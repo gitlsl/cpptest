@@ -47,18 +47,24 @@ namespace cppsharptest
         public void Setup(Driver driver)
         {
             var options = driver.Options;
+          //  driver.ParserOptions.SystemIncludeDirs.Add();
             driver.ParserOptions.Abi = CppAbi.Microsoft;
             driver.ParserOptions.MicrosoftMode = true;
             driver.ParserOptions.SetupMSVC(VisualStudioVersion.VS2017);
+
+            driver.ParserOptions.SystemIncludeDirs.Add(@"D:\Windows Kits\10\Include\10.0.17763.0\shared");
+            driver.ParserOptions.SystemIncludeDirs.Add(@"D:\Windows Kits\10\Include\10.0.17763.0\ucrt");
+            driver.ParserOptions.SystemIncludeDirs.Add(@"D:\Windows Kits\10\Include\10.0.17763.0\um");
+
+
+
             //  driver.ParserOptions.ForceClangToolchainLookup = true;
             options.GeneratorKind = GeneratorKind.CSharp;
             var module = options.AddModule("WeTest");
        
             module.IncludeDirs.Add(@"E:\vsproject\cppsharptest\Dll1");
-  
-            module.IncludeDirs.Add(@"D:\Windows Kits\10\Include\10.0.17763.0\shared");
-            module.IncludeDirs.Add(@"D:\Windows Kits\10\Include\10.0.17763.0\ucrt");
-            module.IncludeDirs.Add(@"D:\Windows Kits\10\Include\10.0.17763.0\um");
+
+            
 
 
             //D:\Windows Kits\10\Include\10.0.17763.0\um\Windows.h
